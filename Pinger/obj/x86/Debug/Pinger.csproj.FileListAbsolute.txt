@@ -1,0 +1,18 @@
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\bin\Debug\Pinger.exe
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\bin\Debug\Pinger.pdb
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\Pinger.Form1.resources
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\Pinger.Properties.Resources.resources
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\Pinger.exe
+D:\Documents and Settings\Admin\Local Settings\Application Data\Temporary Projects\Pinger\obj\x86\Debug\Pinger.pdb
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\Pinger.exe
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\Pinger.pdb
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\Pinger.Form1.resources
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\Pinger.Properties.Resources.resources
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.write.1.tlog
+F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe
+F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.pdb
