@@ -14,15 +14,12 @@ namespace Pinger
     {
         // Перечисление доступных иконок
         enum ShowIcons {GreenOk,Green,Yellow,Orange,Purple,Red,RedMinus }
-        // Задержка пинга в этом потоке
-        long MainDelay = 0;
+
         string URL = "http://ya.ru";
 
         public Form1()
         {
-            InitializeComponent();
-
-            DelayTimer.Enabled = true;
+            InitializeComponent();         
             Worker.RunWorkerAsync(URL);
         }
 
@@ -37,7 +34,7 @@ namespace Pinger
             Ping p = new Ping();
             try
             {
-                PingReply reply = p.Send(host, 3000);
+                PingReply reply = p.Send(host, 2000);
                 if (reply.Status == IPStatus.Success)
                 {
                     e.Result = new PingInformation(reply.Address, reply.RoundtripTime, reply.Buffer.Length, reply.Options.Ttl);
@@ -52,10 +49,15 @@ namespace Pinger
         // Пинг окончен.
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MainDelay = 0;
-            DelayTimer.Enabled = false;
-            PrintLogPingText(e.Result as PingInformation);
-            VisibleIconFromDelay((e.Result as PingInformation).Delay);
+            PingInformation pi = e.Result as PingInformation;
+            if (pi != null)
+            {
+                TrayIcon.BalloonTipTitle = "Pinger 0.0.1 DEBUG";
+                TrayIcon.BalloonTipText = string.Format("Задержка {0} мс ", pi.Delay);
+                PrintLogPingText(pi);
+                VisibleIconFromDelay(pi.Delay);
+
+            }
             SleepWorker.RunWorkerAsync();
         }
 
@@ -68,25 +70,26 @@ namespace Pinger
         // Промежуток закончен
         private void SleepWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DelayTimer.Enabled = true;
-            Worker.RunWorkerAsync(URL);
+           Worker.RunWorkerAsync(URL);
         }
-
 
 
         // Logging information 
         private void PrintLogPingText(PingInformation pi)
         {
             string Line = textBox2.Text;
-            if (Line.Length > 240) Line = "";
+
+            if (Line.Length>2024) Line = "";
 
             if (!pi.checkError())
             {
-                Line += string.Format("IP {0},Delay {1} мс,send {2} b, TTL {3}", pi.IP, pi.Delay, pi.SendByte, pi.TTL);
+                Line += string.Format("IP {0},Delay {1} мс, TTL {2}", pi.IP, pi.Delay, pi.TTL);
             }
             else Line += pi.getError();
 
             textBox2.Text = Line + "\r\n";
+            textBox2.SelectionStart = textBox2.Text.Length;
+            textBox2.ScrollToCaret();
         }
 
         /// <summary>
@@ -107,9 +110,10 @@ namespace Pinger
                 case ShowIcons.RedMinus: bm = Properties.Resources.Minus_Red_Button; break;
                 case ShowIcons.Yellow: bm = Properties.Resources.Yellow_Ball; break;
             }
-
-            TrayIcon.Icon = Icon.FromHandle(bm.GetHicon());
-            
+            try
+            {
+                TrayIcon.Icon = Icon.FromHandle(bm.GetHicon());
+            } catch {};
         }
 
         // Меню Выход
@@ -120,8 +124,10 @@ namespace Pinger
         // Меню Показать
         private void показатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Focus();
             Visible = true;
         }
+
 
         // Анти закрытие формы
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -129,7 +135,6 @@ namespace Pinger
             Visible = false;
             if (e.CloseReason.ToString() == "UserClosing") e.Cancel = true;
         }
-
         private void VisibleIconFromDelay(long Delay)
         {
             if (Delay < 50) ShowToolIcon(ShowIcons.GreenOk);
@@ -139,22 +144,13 @@ namespace Pinger
             else if (Delay > 800 && Delay < 1500) ShowToolIcon(ShowIcons.Red);
             else if (Delay > 1500) ShowToolIcon(ShowIcons.RedMinus);
         }
-
-        /// Задержка Инета.
-        private void DelayTimer_Tick(object sender, EventArgs e)
+        private void TrayIcon_DoubleClick(object sender, EventArgs e)
         {
-            /*
-            MainDelay++;
-            switch (MainDelay)
-            {
-                case 1: ShowToolIcon(ShowIcons.GreenOk); break;
-                case   5: ShowToolIcon(ShowIcons.Green); break;
-                case  20: ShowToolIcon(ShowIcons.Yellow); break;
-                case  40: ShowToolIcon(ShowIcons.Orange); break;
-                case 100: ShowToolIcon(ShowIcons.Red); break;
-                case 200: ShowToolIcon(ShowIcons.RedMinus); break;
-            }
-             */
+            TrayIcon.ShowBalloonTip(2000);
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
