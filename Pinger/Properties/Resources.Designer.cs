@@ -60,52 +60,45 @@ namespace Pinger.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Clear_Green {
+        internal static System.Drawing.Icon DarkOrange {
             get {
-                object obj = ResourceManager.GetObject("Clear_Green", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("DarkOrange", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Green_Ball {
+        internal static System.Drawing.Icon greenOk {
             get {
-                object obj = ResourceManager.GetObject("Green_Ball", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("greenOk", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Minus_Red_Button {
+        internal static System.Drawing.Icon Orange {
             get {
-                object obj = ResourceManager.GetObject("Minus_Red_Button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Orange", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Orange_Ball {
+        internal static System.Drawing.Icon Red {
             get {
-                object obj = ResourceManager.GetObject("Orange_Ball", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Red", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Purple_Ball {
+        internal static System.Drawing.Icon redMinus {
             get {
-                object obj = ResourceManager.GetObject("Purple_Ball", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("redMinus", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Red_Ball {
+        internal static System.Drawing.Icon Yellow {
             get {
-                object obj = ResourceManager.GetObject("Red_Ball", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Yellow_Ball {
-            get {
-                object obj = ResourceManager.GetObject("Yellow_Ball", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Yellow", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

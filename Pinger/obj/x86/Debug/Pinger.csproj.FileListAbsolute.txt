@@ -16,3 +16,4 @@ F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.read.1.tlog
 F:\Develop\Csharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.write.1.tlog
 F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe
 F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.pdb
+F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe.config

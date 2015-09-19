@@ -71,6 +71,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,31 +83,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Yellow Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Clear Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Green Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Minus Red Button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Orange Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Purple Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Red Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Blue Ball.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ConnectIco.ico" />
+    <None Include="Resources\Yellow.ico" />
+    <None Include="Resources\redMinus.ico" />
+    <None Include="Resources\Red.ico" />
+    <None Include="Resources\Orange.ico" />
+    <None Include="Resources\greenOk.ico" />
+    <None Include="Resources\DarkOrange.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

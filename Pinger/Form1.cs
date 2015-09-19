@@ -13,14 +13,33 @@ namespace Pinger
     public partial class Form1 : Form
     {
         // Перечисление доступных иконок
-        enum ShowIcons {GreenOk,Green,Yellow,Orange,Purple,Red,RedMinus }
+        enum ShowIcons {GreenOk,Green,Yellow,Orange,Red,RedMinus }
 
-        string URL = "http://ya.ru";
+        string URL;
+
 
         public Form1()
         {
-            InitializeComponent();         
+            InitializeComponent();
+            TrayIcon.Text = Text;
+
+            if (Properties.Settings.Default.NeedUpdate)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.NeedUpdate = false;
+            }
+
+            URL = Properties.Settings.Default.Server;
+            textBox1.Text = URL;
+
+            OnPing(URL);
+        }
+        
+
+        private void OnPing(string URL)
+        {
             Worker.RunWorkerAsync(URL);
+            TimerMaxDelay.Enabled = true;
         }
 
         // Фоновый Пинг до сервака
@@ -50,10 +69,11 @@ namespace Pinger
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             PingInformation pi = e.Result as PingInformation;
+            TimerMaxDelay.Enabled = false;
             if (pi != null)
             {
-                TrayIcon.BalloonTipTitle = "Pinger 0.0.1 DEBUG";
-                TrayIcon.BalloonTipText = string.Format("Задержка {0} мс ", pi.Delay);
+                TrayIcon.BalloonTipTitle = Text;
+                TrayIcon.BalloonTipText = string.Format("Сервер: {0} \nЗадержка {1} мс \n\nДа прибудет с вами сила ;-)",URL,pi.Delay);
                 PrintLogPingText(pi);
                 VisibleIconFromDelay(pi.Delay);
 
@@ -70,9 +90,8 @@ namespace Pinger
         // Промежуток закончен
         private void SleepWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-           Worker.RunWorkerAsync(URL);
+            OnPing(URL);
         }
-
 
         // Logging information 
         private void PrintLogPingText(PingInformation pi)
@@ -83,7 +102,7 @@ namespace Pinger
 
             if (!pi.checkError())
             {
-                Line += string.Format("IP {0},Delay {1} мс, TTL {2}", pi.IP, pi.Delay, pi.TTL);
+                Line += string.Format("Ответ от {0}: Время={1} мс, TTL={2}", pi.IP, pi.Delay, pi.TTL);
             }
             else Line += pi.getError();
 
@@ -98,21 +117,22 @@ namespace Pinger
         /// <param name="ico"></param>
         private void ShowToolIcon(ShowIcons ico)
         {
-            Bitmap bm = new Bitmap(Properties.Resources.Green_Ball);
+            Icon cIco;
+            cIco = Properties.Resources.greenOk;
 
             switch (ico)
             {
-                case ShowIcons.GreenOk: bm = Properties.Resources.Clear_Green; break;
-                case ShowIcons.Green: bm = Properties.Resources.Green_Ball; break;
-                case ShowIcons.Orange: bm = Properties.Resources.Orange_Ball; break;
-                case ShowIcons.Purple: bm = Properties.Resources.Purple_Ball; break;
-                case ShowIcons.Red: bm = Properties.Resources.Red_Ball; break;
-                case ShowIcons.RedMinus: bm = Properties.Resources.Minus_Red_Button; break;
-                case ShowIcons.Yellow: bm = Properties.Resources.Yellow_Ball; break;
+                case ShowIcons.GreenOk: cIco = Properties.Resources.greenOk; break;
+                case ShowIcons.Green:   cIco = Properties.Resources.Yellow; break;
+                case ShowIcons.Yellow: cIco = Properties.Resources.Orange; break;
+                case ShowIcons.Orange: cIco = Properties.Resources.DarkOrange ; break;
+                case ShowIcons.Red: cIco = Properties.Resources.Red; break;
+                case ShowIcons.RedMinus: cIco = Properties.Resources.redMinus; break;
+                
             }
             try
             {
-                TrayIcon.Icon = Icon.FromHandle(bm.GetHicon());
+                TrayIcon.Icon = cIco;
             } catch {};
         }
 
@@ -135,22 +155,58 @@ namespace Pinger
             Visible = false;
             if (e.CloseReason.ToString() == "UserClosing") e.Cancel = true;
         }
+       
+        // Иконка в зависимости от времени задержки
         private void VisibleIconFromDelay(long Delay)
         {
             if (Delay < 50) ShowToolIcon(ShowIcons.GreenOk);
             else if (Delay > 50 && Delay < 200) ShowToolIcon(ShowIcons.Green);
-            else if (Delay > 200 && Delay < 400) ShowToolIcon(ShowIcons.Yellow);
-            else if (Delay > 400 && Delay < 800) ShowToolIcon(ShowIcons.Orange);
-            else if (Delay > 800 && Delay < 1500) ShowToolIcon(ShowIcons.Red);
+            else if (Delay > 200 && Delay < 500) ShowToolIcon(ShowIcons.Yellow);
+            else if (Delay > 500 && Delay < 1000) ShowToolIcon(ShowIcons.Orange);
+            else if (Delay > 1000 && Delay < 1500) ShowToolIcon(ShowIcons.Red);
             else if (Delay > 1500) ShowToolIcon(ShowIcons.RedMinus);
         }
+        
+        // Двойное нажатие на трей
         private void TrayIcon_DoubleClick(object sender, EventArgs e)
         {
             TrayIcon.ShowBalloonTip(2000);
         }
+        
+        // Редактирование сервака и его сохранение
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!textBox1.Enabled)
+            {
+                textBox1.Enabled = true;
+            }
+            else
+            {
+               URL = textBox1.Text;
+               Properties.Settings.Default.Server = URL;
+               Properties.Settings.Default.Save();
+               textBox1.Enabled = false;
+            }
+            
+        }
 
+        // Переход на сайт
+        private void label2_Click(object sender, EventArgs e)
+        {
+            label2.Text = "Пасибки за переход :-)";
+            System.Diagnostics.Process.Start("http://salactor.ru");
+        }
+
+        // Hover надписи перехода на сайт
+        private void label2_MouseMove(object sender, MouseEventArgs e)
+        { label2.ForeColor = Color.Blue; }
+        private void label2_MouseLeave(object sender, EventArgs e)
+        { label2.ForeColor = Color.Black; }
+
+        private void TimerMaxDelay_Tick(object sender, EventArgs e)
+        {
+            ShowToolIcon(ShowIcons.RedMinus);
+            TimerMaxDelay.Enabled = false;
         }
     }
 }

@@ -41,11 +41,14 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.SleepWorker = new System.ComponentModel.BackgroundWorker();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TimerMaxDelay = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Worker
             // 
+            this.Worker.WorkerSupportsCancellation = true;
             this.Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Worker_DoWork);
             this.Worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Worker_RunWorkerCompleted);
             // 
@@ -88,9 +91,9 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(50, 6);
+            this.textBox1.Location = new System.Drawing.Point(50, 7);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 20);
+            this.textBox1.Size = new System.Drawing.Size(197, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "https://ya.ru/";
             // 
@@ -109,31 +112,55 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(262, 162);
+            this.textBox2.Size = new System.Drawing.Size(282, 141);
             this.textBox2.TabIndex = 3;
             // 
             // SleepWorker
             // 
+            this.SleepWorker.WorkerSupportsCancellation = true;
             this.SleepWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SleepWorker_DoWork);
             this.SleepWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SleepWorker_RunWorkerCompleted);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(233, 4);
+            this.button1.Location = new System.Drawing.Point(253, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "!";
+            this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Honeydew;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(0, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(289, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Сайт автора Playlinsor";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.MouseLeave += new System.EventHandler(this.label2_MouseLeave);
+            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
+            // 
+            // TimerMaxDelay
+            // 
+            this.TimerMaxDelay.Interval = 2000;
+            this.TimerMaxDelay.Tick += new System.EventHandler(this.TimerMaxDelay_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(267, 197);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(289, 197);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -142,7 +169,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
-            this.Text = "Pinger 0.0.1";
+            this.Text = "Pinger 1.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -163,6 +190,8 @@
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker SleepWorker;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer TimerMaxDelay;
     }
 }
 

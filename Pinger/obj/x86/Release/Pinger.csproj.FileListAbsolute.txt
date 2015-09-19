@@ -1,0 +1,10 @@
+F:\Develop\Csharp\Pinger\Pinger\bin\Release\Pinger.exe.config
+F:\Develop\Csharp\Pinger\Pinger\bin\Release\Pinger.exe
+F:\Develop\Csharp\Pinger\Pinger\bin\Release\Pinger.pdb
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\ResolveAssemblyReference.cache
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.Form1.resources
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.Properties.Resources.resources
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\GenerateResource.read.1.tlog
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\GenerateResource.write.1.tlog
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.exe
+F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.pdb
