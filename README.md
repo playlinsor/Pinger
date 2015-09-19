@@ -9,4 +9,5 @@ Pinger — Программа для опроса качества связи с
 ### Как связатся с автором ###
 
 e-mail: playlinsor@gmail.com
+
 site:   http://salactor.ru
