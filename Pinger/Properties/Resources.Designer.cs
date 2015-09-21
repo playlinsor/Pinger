@@ -60,6 +60,13 @@ namespace Pinger.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cancel {
+            get {
+                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon DarkOrange {
             get {
                 object obj = ResourceManager.GetObject("DarkOrange", resourceCulture);
@@ -91,6 +98,27 @@ namespace Pinger.Properties {
         internal static System.Drawing.Icon redMinus {
             get {
                 object obj = ResourceManager.GetObject("redMinus", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap save_edit1 {
+            get {
+                object obj = ResourceManager.GetObject("save_edit1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon Transfer {
+            get {
+                object obj = ResourceManager.GetObject("Transfer", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

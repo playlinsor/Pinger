@@ -37,6 +37,9 @@
     <ApplicationIcon>ConnectIco.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\NUnit 2.6.4\bin\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +61,7 @@
     <Compile Include="PingInformation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="uTests.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectIco.ico" />
+    <None Include="Resources\save_edit.ico" />
+    <None Include="Resources\save.ico" />
+    <None Include="Resources\cancel.ico" />
+    <None Include="Resources\Transfer.ico" />
     <None Include="Resources\Yellow.ico" />
     <None Include="Resources\redMinus.ico" />
     <None Include="Resources\Red.ico" />

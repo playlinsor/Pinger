@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
+  <TopNode>[0-1007]F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe</TopNode>
+  <SelectedNode>[0-1007]F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1007]F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe" Expanded="true" />
+    <Node UniqueName="[0-1008]Pinger" Expanded="true" />
+    <Node UniqueName="[0-1000]Pinger.MainProgamTests" Expanded="true" />
+    <Node UniqueName="[0-1002]Pinger.PingInformationTests" Expanded="true" />
+  </Nodes>
+</VisualState>

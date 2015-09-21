@@ -13,13 +13,14 @@ namespace Pinger
     public partial class Form1 : Form
     {
         // Перечисление доступных иконок
-        enum ShowIcons {GreenOk,Green,Yellow,Orange,Red,RedMinus }
+        enum ShowIcons {GreenOk,Green,Yellow,Orange,Red,RedMinus,Arrow}
 
         string URL;
-
+        bool Error = false;
 
         public Form1()
         {
+            
             InitializeComponent();
             TrayIcon.Text = Text;
 
@@ -33,6 +34,7 @@ namespace Pinger
             textBox1.Text = URL;
 
             OnPing(URL);
+            button2.Enabled = false;
         }
         
 
@@ -72,6 +74,7 @@ namespace Pinger
             TimerMaxDelay.Enabled = false;
             if (pi != null)
             {
+                if (pi.checkError()) Error = true;
                 TrayIcon.BalloonTipTitle = Text;
                 TrayIcon.BalloonTipText = string.Format("Сервер: {0} \nЗадержка {1} мс \n\nДа прибудет с вами сила ;-)",URL,pi.Delay);
                 PrintLogPingText(pi);
@@ -122,6 +125,7 @@ namespace Pinger
 
             switch (ico)
             {
+                case ShowIcons.Arrow: cIco = Properties.Resources.Transfer; break;
                 case ShowIcons.GreenOk: cIco = Properties.Resources.greenOk; break;
                 case ShowIcons.Green:   cIco = Properties.Resources.Yellow; break;
                 case ShowIcons.Yellow: cIco = Properties.Resources.Orange; break;
@@ -159,7 +163,8 @@ namespace Pinger
         // Иконка в зависимости от времени задержки
         private void VisibleIconFromDelay(long Delay)
         {
-            if (Delay < 50) ShowToolIcon(ShowIcons.GreenOk);
+            if (Delay == 0) ShowToolIcon(ShowIcons.Arrow);
+            else if (Delay < 50) ShowToolIcon(ShowIcons.GreenOk);
             else if (Delay > 50 && Delay < 200) ShowToolIcon(ShowIcons.Green);
             else if (Delay > 200 && Delay < 500) ShowToolIcon(ShowIcons.Yellow);
             else if (Delay > 500 && Delay < 1000) ShowToolIcon(ShowIcons.Orange);
@@ -178,7 +183,9 @@ namespace Pinger
         {
             if (!textBox1.Enabled)
             {
+                button2.Enabled = true;
                 textBox1.Enabled = true;
+                button1.Image = (Properties.Resources.save).ToBitmap();
             }
             else
             {
@@ -186,6 +193,8 @@ namespace Pinger
                Properties.Settings.Default.Server = URL;
                Properties.Settings.Default.Save();
                textBox1.Enabled = false;
+               button2.Enabled = false;
+               button1.Image = Properties.Resources.save_edit1;
             }
             
         }
@@ -205,8 +214,21 @@ namespace Pinger
 
         private void TimerMaxDelay_Tick(object sender, EventArgs e)
         {
-            ShowToolIcon(ShowIcons.RedMinus);
+            if (!Error)
+            {
+                PrintLogPingText(new PingInformation("Запрос прерван из за таймаута"));
+                ShowToolIcon(ShowIcons.RedMinus);
+            }
+            Error = false;
             TimerMaxDelay.Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = URL;
+            textBox1.Enabled = false;
+            button2.Enabled = false;
+            button1.Image = Properties.Resources.save_edit1;
         }
     }
 }
