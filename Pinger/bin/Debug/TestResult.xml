@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-09-21" time="02:23:27">
-  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.3082" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="F:\Develop\Csharp\Pinger\Pinger\bin\Debug" machine-name="MICROSOF-761CCE" user="Admin" user-domain="MICROSOF-761CCE" />
+<test-results name="F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-10-12" time="03:24:46">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.3082" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="F:\NUnit 2.6.4\bin" machine-name="MICROSOF-761CCE" user="Admin" user-domain="MICROSOF-761CCE" />
   <culture-info current-culture="ru-RU" current-uiculture="ru-RU" />
-  <test-suite type="Assembly" name="F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe" executed="True" result="Success" success="True" time="0.123" asserts="0">
+  <test-suite type="Assembly" name="F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe" executed="True" result="Success" success="True" time="0.151" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Pinger" executed="True" result="Success" success="True" time="0.108" asserts="0">
+      <test-suite type="Namespace" name="Pinger" executed="True" result="Success" success="True" time="0.112" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="MainProgamTests" executed="True" result="Success" success="True" time="0.078" asserts="0">
+          <test-suite type="TestFixture" name="MainProgamTests" executed="True" result="Success" success="True" time="0.075" asserts="0">
             <results>
-              <test-case name="Pinger.MainProgamTests.Assertss" executed="True" result="Success" success="True" time="0.065" asserts="1" />
+              <test-case name="Pinger.MainProgamTests.Assertss" executed="True" result="Success" success="True" time="0.059" asserts="1" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="PingInformationTests" executed="True" result="Success" success="True" time="0.023" asserts="0">
+          <test-suite type="TestFixture" name="PingInformationTests" executed="True" result="Success" success="True" time="0.021" asserts="0">
             <results>
               <test-case name="Pinger.PingInformationTests.Create" executed="True" result="Success" success="True" time="0.002" asserts="1" />
               <test-case name="Pinger.PingInformationTests.CreateFull" executed="True" result="Success" success="True" time="0.001" asserts="4" />

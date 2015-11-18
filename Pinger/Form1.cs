@@ -47,12 +47,18 @@ namespace Pinger
         // Фоновый Пинг до сервака
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            string cUrl = e.Argument.ToString();
-            if (cUrl.IndexOf("http") == -1) cUrl = "http://" + cUrl;
-            Uri url = new Uri(cUrl);
-            string pingurl = string.Format("{0}", url.Host);
-            string host = pingurl;
             Ping p = new Ping();
+            string host = "";
+            string cUrl = e.Argument.ToString();
+            if (cUrl.IndexOf("ip:") != -1)
+            {
+                host = cUrl.Substring(3, cUrl.Length - 3);
+            } else {
+                if (cUrl.IndexOf("http") == -1) cUrl = "http://" + cUrl;
+                Uri url = new Uri(cUrl);
+                string pingurl = string.Format("{0}", url.Host);
+                host = pingurl;    
+            }
             try
             {
                 PingReply reply = p.Send(host, 2000);
