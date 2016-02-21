@@ -18,3 +18,13 @@ F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe
 F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.pdb
 F:\Develop\Csharp\Pinger\Pinger\bin\Debug\Pinger.exe.config
 F:\Develop\Csharp\Pinger\Pinger\bin\Debug\nunit.framework.dll
+D:\Develop\CSharp\Pinger\Pinger\bin\Debug\Pinger.exe.config
+D:\Develop\CSharp\Pinger\Pinger\bin\Debug\Pinger.exe
+D:\Develop\CSharp\Pinger\Pinger\bin\Debug\Pinger.pdb
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\Pinger.Form1.resources
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\Pinger.Properties.Resources.resources
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\Pinger.exe
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Debug\Pinger.pdb

@@ -33,9 +33,12 @@
             this.Worker = new System.ComponentModel.BackgroundWorker();
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.показатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.langToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.русскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -55,6 +58,9 @@
             // 
             // TrayIcon
             // 
+            this.TrayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.TrayIcon.BalloonTipText = "Обновление информации...";
+            this.TrayIcon.BalloonTipTitle = "Pinger";
             this.TrayIcon.ContextMenuStrip = this.contextMenuStrip1;
             this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
             this.TrayIcon.Text = "Pinger";
@@ -64,30 +70,54 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.показатьToolStripMenuItem,
+            this.ShowToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.выходToolStripMenuItem});
+            this.langToolStripMenuItem,
+            this.ExitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 54);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 98);
+             // 
+            // ShowToolStripMenuItem
             // 
-            // показатьToolStripMenuItem
-            // 
-            this.показатьToolStripMenuItem.Name = "показатьToolStripMenuItem";
-            this.показатьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.показатьToolStripMenuItem.Text = "Показать";
-            this.показатьToolStripMenuItem.Click += new System.EventHandler(this.показатьToolStripMenuItem_Click);
+            this.ShowToolStripMenuItem.Name = "ShowToolStripMenuItem";
+            this.ShowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ShowToolStripMenuItem.Text = "Показать";
+            this.ShowToolStripMenuItem.Click += new System.EventHandler(this.показатьToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(130, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
-            // выходToolStripMenuItem
+            // langToolStripMenuItem
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.langToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.русскийToolStripMenuItem});
+            this.langToolStripMenuItem.Name = "langToolStripMenuItem";
+            this.langToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.langToolStripMenuItem.Text = "Язык";
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.englishToolStripMenuItem.Text = "English";
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // русскийToolStripMenuItem
+            // 
+            this.русскийToolStripMenuItem.Name = "русскийToolStripMenuItem";
+            this.русскийToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.русскийToolStripMenuItem.Text = "Русский";
+            this.русскийToolStripMenuItem.Click += new System.EventHandler(this.русскийToolStripMenuItem_Click);
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitToolStripMenuItem.Text = "Выход";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // textBox1
             // 
@@ -144,7 +174,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(289, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Сайт автора Playlinsor";
+            this.label2.Text = "Playlinsor@gmail.com";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             this.label2.MouseLeave += new System.EventHandler(this.label2_MouseLeave);
@@ -183,7 +213,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
-            this.Text = "Pinger 1.0.2";
+            this.Text = "Pinger 1.0.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -199,14 +229,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem показатьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker SleepWorker;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer TimerMaxDelay;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem langToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem русскийToolStripMenuItem;
     }
 }
 

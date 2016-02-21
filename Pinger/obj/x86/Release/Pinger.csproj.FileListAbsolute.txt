@@ -9,3 +9,6 @@ F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\GenerateResource.write.1.tlog
 F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.exe
 F:\Develop\Csharp\Pinger\Pinger\obj\x86\Release\Pinger.pdb
 F:\Develop\Csharp\Pinger\Pinger\bin\Release\nunit.framework.dll
+D:\Develop\CSharp\Pinger\Pinger\bin\Release\Pinger.exe.config
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Release\Pinger.exe
+D:\Develop\CSharp\Pinger\Pinger\obj\x86\Release\Pinger.pdb

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
+using PlaylinsorLib;
 
 namespace Pinger
 {
@@ -15,28 +16,51 @@ namespace Pinger
         // Перечисление доступных иконок
         enum ShowIcons {GreenOk,Green,Yellow,Orange,Red,RedMinus,Arrow}
 
+        Localization Lang;
+
         string URL;
         bool Error = false;
 
         public Form1()
         {
-            
             InitializeComponent();
-            TrayIcon.Text = Text;
-
+            
             if (Properties.Settings.Default.NeedUpdate)
             {
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.NeedUpdate = false;
             }
 
+            switch (Properties.Settings.Default.CurrentLanguage)
+            {
+                case 1: Lang = new Localization(PlaylinsorLib.Localization.Languages.Russian); break;
+                case 2: Lang = new Localization(PlaylinsorLib.Localization.Languages.English); break;
+                default: Lang = new Localization(PlaylinsorLib.Localization.Languages.English); break;
+            }
+            
+            ChangeInterfaceLanguage();
+
+            TrayIcon.Text = Text;
+            TrayIcon.BalloonTipTitle = Text;
+
             URL = Properties.Settings.Default.Server;
             textBox1.Text = URL;
 
             OnPing(URL);
             button2.Enabled = false;
+
+           
         }
-        
+
+        private void ChangeInterfaceLanguage()
+        {
+            label1.Text = Lang.GetString("TXT_FORM_SERVER");
+            TrayIcon.BalloonTipText = Lang.GetString("TXT_TRAY_START_MESSAGE");
+            ShowToolStripMenuItem.Text = Lang.GetString("TXT_CONTEXT_SHOW");
+            langToolStripMenuItem.Text = Lang.GetString("TXT_CONTEXT_LANGUAGE");
+            ExitToolStripMenuItem.Text = Lang.GetString("TXT_CONTEXT_EXIT");
+        }
+
 
         private void OnPing(string URL)
         {
@@ -80,11 +104,18 @@ namespace Pinger
             TimerMaxDelay.Enabled = false;
             if (pi != null)
             {
-                if (pi.checkError()) Error = true;
-                TrayIcon.BalloonTipTitle = Text;
-                TrayIcon.BalloonTipText = string.Format("Сервер: {0} \nЗадержка {1} мс \n\nДа прибудет с вами сила ;-)",URL,pi.Delay);
-                PrintLogPingText(pi);
-                VisibleIconFromDelay(pi.Delay);
+                try
+                {
+                    if (pi.checkError()) Error = true;
+                    TrayIcon.BalloonTipTitle = Text;
+                    TrayIcon.BalloonTipText = Lang.GetString("TXT_TRAY_MESSAGE", URL, pi.Delay);
+                    PrintLogPingText(pi);
+                    VisibleIconFromDelay(pi.Delay);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Lang.GetString("TXT_MAIN_ERROR_TITLE"), Lang.GetString("TXT_MAIN_ERROR_MESSAGE", ex.Message), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
             }
             SleepWorker.RunWorkerAsync();
@@ -107,11 +138,11 @@ namespace Pinger
         {
             string Line = textBox2.Text;
 
-            if (Line.Length>2024) Line = "";
+            if (Line.Length>4024) Line = "";
 
             if (!pi.checkError())
             {
-                Line += string.Format("Ответ от {0}: Время={1} мс, TTL={2}", pi.IP, pi.Delay, pi.TTL);
+                Line += Lang.GetString("TXT_FORM_LOG_MESSAGE", pi.IP, pi.Delay, pi.TTL);
             }
             else Line += pi.getError();
 
@@ -149,6 +180,7 @@ namespace Pinger
         // Меню Выход
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Save();
             Application.Exit();
         }
         // Меню Показать
@@ -208,8 +240,8 @@ namespace Pinger
         // Переход на сайт
         private void label2_Click(object sender, EventArgs e)
         {
-            label2.Text = "Пасибки за переход :-)";
-            System.Diagnostics.Process.Start("http://salactor.ru");
+            label2.Text = Lang.GetString("TXT_FORM_LABEL_CLICK");
+            System.Diagnostics.Process.Start("mailto:playlinsor@gmail.com");
         }
 
         // Hover надписи перехода на сайт
@@ -222,7 +254,7 @@ namespace Pinger
         {
             if (!Error)
             {
-                PrintLogPingText(new PingInformation("Запрос прерван из за таймаута"));
+                PrintLogPingText(new PingInformation(Lang.GetString("TXT_FORM_LOG_MESSAGE_ERROR")));
                 ShowToolIcon(ShowIcons.RedMinus);
             }
             Error = false;
@@ -235,6 +267,22 @@ namespace Pinger
             textBox1.Enabled = false;
             button2.Enabled = false;
             button1.Image = Properties.Resources.save_edit1;
+        }
+
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lang = new Localization(PlaylinsorLib.Localization.Languages.English);
+            ChangeInterfaceLanguage();
+            Properties.Settings.Default.CurrentLanguage = 2;
+            
+        }
+
+        private void русскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lang = new Localization(PlaylinsorLib.Localization.Languages.Russian);
+            ChangeInterfaceLanguage();
+            Properties.Settings.Default.CurrentLanguage = 1;
         }
     }
 }
