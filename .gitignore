@@ -234,3 +234,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+Thumbs.db
+/Icons/button/Thumbs.db
+/Icons/Thumbs.db
