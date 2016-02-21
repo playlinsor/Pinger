@@ -1,4 +1,4 @@
-﻿# Description #
+# Description #
 
 Pinger — a Program to survey the quality of communication with the remote server, and display using colour icons in the tray, very handy when the connection is not stable or there is a need to monitor the condition of a particular site.
 

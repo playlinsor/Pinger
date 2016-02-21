@@ -234,6 +234,8 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Windows
 Thumbs.db
 /Icons/button/Thumbs.db
 /Icons/Thumbs.db
